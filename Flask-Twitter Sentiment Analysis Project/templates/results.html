@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+<meta charset="utf-8">
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+ <link rel="icon" href="http://obj-cache.cloud.ruanbekker.com/favicon.ico">
+ <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+<title>Twitter Sentiment Analysis</title>
+ </head>
+ <script language="Javascript">
+ function populateText() {
+ var data = document.getElementsByName("goodSummary");
+ for (const item of data) {
+ item.innerHTML = item.textContent
+ }
+ }
+</script>
+<body onload="populateText()">
+<div class="container">
+ <div style="background:transparent !important" class="jumbotron">
+ <div style="font-family: 'Times New Roman'">
+ <p>
+ <center>
+ <font size="6" style="color:rgb(239,127,26);">
+ TWITTER SENTIMENT ANALYSIS</font>
+ </center>
+ </p>
+ </div>
+ </div>
+<form action="/search/results" method="post">
+ <div class="input-group">
+ <input type="text" class="form-control input-lg" name="input" placeholder="Search" autofocus>
+ <div class="input-group-btn">
+ <button class="btn btn-primary btn-lg" type="submit">
+ <i class="glyphicon glyphicon-search"></i>
+ </button>
+ </div>
+ </div>
+ </form>
+
+ <br/>
+<table class="table">
+ <thead>
+ <tr>
+ <th>User Name</th>
+ <th>Location</th>
+ <th>Tweet</th>
+ <th>Sentiments</th>
+ </tr>
+ </thead>
+ {% for key,value in x.iterrows() %}
+<tbody>
+ <tr>
+ <th scope="row">{{ value['user'] }}</th>
+ <th>{{ value['location'] }}</th>
+  <td>{{ value['tweet'] }}</td>
+ <td style="font-sixe:52px"><a href="{ value['title'] }}">{{ value['sentiment'] }}</a></td>
+ </tr>
+ </tbody>
+{% endfor %}
+</table>
+</div>
+ </div>
+ </body>
+</html>
